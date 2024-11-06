@@ -1,0 +1,151 @@
+Building configuration...
+
+Current configuration : 2242 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+logging message-counter syslog
+enable password 1234
+!
+no aaa new-model
+!
+!
+dot11 syslog
+ip source-route
+!
+!
+ip dhcp excluded-address 192.168.1.1
+ip dhcp excluded-address 192.168.1.17
+ip dhcp excluded-address 192.168.1.33
+ip dhcp excluded-address 192.168.1.14
+ip dhcp excluded-address 192.168.1.30
+ip dhcp excluded-address 192.168.1.46
+ip dhcp excluded-address 192.168.1.13
+ip dhcp excluded-address 192.168.1.29
+ip dhcp excluded-address 192.168.1.45
+!
+ip dhcp pool 10
+   network 192.168.1.0 255.255.255.240
+   dns-server 8.8.8.8
+   default-router 192.168.1.14
+!
+ip dhcp pool 20
+   network 192.168.1.16 255.255.255.240
+   default-router 192.168.1.30
+   dns-server 8.8.8.8
+!
+!
+ip cef
+ip domain name wmszki.hu
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+username 1234 password 0 1234
+!
+!
+!
+archive
+ log config
+  hidekeys
+!
+!
+ip ssh version 2
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0.10
+ encapsulation dot1Q 10
+ ip address 192.168.1.14 255.255.255.240
+ standby version 2
+ standby 10 ip 192.168.1.13
+ standby 10 priority 150
+ standby 10 preempt
+!
+interface FastEthernet0.20
+ encapsulation dot1Q 20
+ ip address 192.168.1.30 255.255.255.240
+ standby version 2
+ standby 20 ip 192.168.1.29
+ standby 20 preempt
+!
+interface FastEthernet0.30
+ encapsulation dot1Q 30
+ ip address 192.168.1.46 255.255.255.240
+ standby version 2
+ standby 30 ip 192.168.1.45
+ standby 30 preempt
+!
+interface FastEthernet1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface BRI0
+ no ip address
+ encapsulation hdlc
+ shutdown
+!
+interface FastEthernet2
+!
+interface FastEthernet3
+!
+interface FastEthernet4
+!
+interface FastEthernet5
+!
+interface FastEthernet6
+!
+interface FastEthernet7
+!
+interface FastEthernet8
+!
+interface FastEthernet9
+!
+interface Vlan1
+ no ip address
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ password 1234
+ login local
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 15
+ login local
+ transport input ssh
+!
+end
+
