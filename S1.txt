@@ -1,0 +1,179 @@
+Building configuration...
+
+Current configuration : 4066 bytes
+!
+! Last configuration change at 01:48:34 UTC Mon Mar 1 1993
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname S1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+system mtu routing 1500
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1943987456
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1943987456
+ revocation-check none
+ rsakeypair TP-self-signed-1943987456
+!
+!
+crypto pki certificate chain TP-self-signed-1943987456
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31393433 39383734 3536301E 170D3933 30333031 30303030
+  35375A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 39343339
+  38373435 3630819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100BA18 903B4B86 315979F2 5D72E8D0 2E6DCE67 D17DDAE3 5E7A8EE0 63A4DEB0
+  05933A18 5FC61C51 539DAAD9 223B0E2B BC6100F8 8AA7ECAE 623A7E4A CB0D2603
+  557B9573 B7A83148 D3CBB384 1872E403 6BBAB8A4 DE8108F0 759F3C55 AE06D152
+  37C2666C 85B5D7A7 EC0BEC44 E244CBB2 2DF90252 D5EEE9DA DA6E381F 3CABFE27
+  21FF0203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 144B1CC4 671445AF F42639EC A1EB41A7 346C50EE B4301D06
+  03551D0E 04160414 4B1CC467 1445AFF4 2639ECA1 EB41A734 6C50EEB4 300D0609
+  2A864886 F70D0101 05050003 8181005B 3579A47D 36B456D4 53841856 F555E4C5
+  C99A9924 97F719B3 D54784BA FF0A8BBC 834C55B6 97FC4EB9 ACAB2566 307AC7F0
+  B5DE9850 70D7EC3B 49786DF0 EE310FA1 BA5B6D27 08CE136C 779D5A59 71056BFC
+  7CCEB425 81BB6045 71804C49 CE0384B5 ABC47389 54624832 C4715E23 64D566B5
+  4DBD3401 E48CEF37 2F102FCA CFD2F4
+        quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/2
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/3
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/4
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/5
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/6
+ switchport access vlan 10
+ switchport mode access
+!
+interface FastEthernet0/7
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/8
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/9
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/10
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/11
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/12
+ switchport access vlan 20
+ switchport mode access
+!
+interface FastEthernet0/13
+ switchport access vlan 30
+ switchport mode access
+!
+interface FastEthernet0/14
+ switchport access vlan 30
+ switchport mode access
+!
+interface FastEthernet0/15
+ switchport access vlan 30
+ switchport mode access
+!
+interface FastEthernet0/16
+ switchport access vlan 30
+ switchport mode access
+!
+interface FastEthernet0/17
+ switchport access vlan 30
+ switchport mode access
+!
+interface FastEthernet0/18
+ switchport access vlan 30
+ switchport mode access
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+ switchport access vlan 100
+ switchport mode access
+!
+interface FastEthernet0/24
+ switchport access vlan 55
+ switchport mode access
+!
+interface GigabitEthernet0/1
+ switchport trunk allowed vlan 10,20,30,55,100
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+ switchport trunk allowed vlan 10,20,30,55,100
+ switchport mode trunk
+!
+interface Vlan1
+ no ip address
+!
+ip http server
+ip http secure-server
+!
+vstack
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
+
