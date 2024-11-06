@@ -1,0 +1,173 @@
+Building configuration...
+
+Current configuration : 2970 bytes
+!
+version 12.4
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+logging message-counter syslog
+!
+no aaa new-model
+!
+!
+dot11 syslog
+ip source-route
+!
+!
+ip dhcp excluded-address 192.168.1.1
+ip dhcp excluded-address 192.168.1.17
+ip dhcp excluded-address 192.168.1.33
+ip dhcp excluded-address 192.168.1.18
+ip dhcp excluded-address 192.168.1.29
+ip dhcp excluded-address 192.168.1.14
+ip dhcp excluded-address 192.168.1.45
+ip dhcp excluded-address 192.168.1.30
+ip dhcp excluded-address 192.168.1.13
+ip dhcp excluded-address 192.168.1.46
+!
+ip dhcp pool 10
+   network 192.168.1.0 255.255.255.240
+   default-router 192.168.1.1
+   dns-server 8.8.8.8
+!
+ip dhcp pool 20
+   network 192.168.1.16 255.255.255.240
+   default-router 192.168.1.17
+   dns-server 8.8.8.8
+!
+!
+ip cef
+ip domain name wmszki.hu
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+username admin privilege 15 secret 5 $1$w/0g$KjFe8G/X02tlJPe2EEkSQ0
+username 1234 password 0 1234
+!
+!
+!
+archive
+ log config
+  hidekeys
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0.10
+ encapsulation dot1Q 10
+ ip address 192.168.1.1 255.255.255.240
+ standby version 2
+ standby 10 ip 192.168.1.13
+ standby 10 preempt
+!
+interface FastEthernet0.20
+ encapsulation dot1Q 20
+ ip address 192.168.1.17 255.255.255.240
+ standby version 2
+ standby 20 ip 192.168.1.29
+ standby 20 priority 150
+ standby 20 preempt
+!
+interface FastEthernet0.30
+ encapsulation dot1Q 30
+ ip address 192.168.1.33 255.255.255.240
+ ip access-group 20 out
+ standby version 2
+ standby 30 ip 192.168.1.45
+ standby 30 priority 150
+ standby 30 preempt
+!
+interface FastEthernet0.100
+ encapsulation dot1Q 100
+ ip dhcp client client-id ascii mytest1
+ ip dhcp client hostname router1
+ ip dhcp client lease 2 0 0
+ ip address dhcp
+!
+interface FastEthernet1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface BRI0
+ no ip address
+ encapsulation hdlc
+ shutdown
+!
+interface FastEthernet2
+!
+interface FastEthernet3
+!
+interface FastEthernet4
+!
+interface FastEthernet5
+!
+interface FastEthernet6
+!
+interface FastEthernet7
+!
+interface FastEthernet8
+!
+interface FastEthernet9
+!
+interface Vlan1
+ no ip address
+!
+ip forward-protocol nd
+no ip http server
+no ip http secure-server
+!
+!
+!
+access-list 20 deny   192.168.1.25
+access-list 20 deny   192.168.1.24
+access-list 20 deny   192.168.1.27
+access-list 20 deny   192.168.1.26
+access-list 20 deny   192.168.1.29
+access-list 20 deny   192.168.1.28
+access-list 20 deny   192.168.1.30
+access-list 20 deny   192.168.1.19
+access-list 20 deny   192.168.1.21
+access-list 20 deny   192.168.1.20
+access-list 20 deny   192.168.1.23
+access-list 20 deny   192.168.1.22
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ password 1234
+ login local
+line aux 0
+line vty 0 4
+ password 1234
+ login local
+ transport input ssh
+line vty 5 15
+ password 1234
+ login local
+ transport input ssh
+!
+end
+
