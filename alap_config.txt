@@ -22,3 +22,15 @@ banner login #Ez az SW1-es Switch, kod szukseges!#
 ip ftp username 1234
 ip ftp password 1234
 
+interface vlan1
+
+ip address 192.168.0.2 255.255.255.0
+no shut
+ip default-gateway 192.168.0.1
+
+end
+copy run start
+
+
+
+
