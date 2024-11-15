@@ -1,3 +1,4 @@
+#SW1
 en
 conf t 
 hostname SW1
@@ -30,6 +31,14 @@ ip default-gateway 192.168.0.1
 
 end
 copy run start
+copy run ftp
+# copy run ftp utan ip cimet kell megadni
+write 
+do write
+
+write ease
+reload
+
 
 
 
