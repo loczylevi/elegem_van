@@ -3,6 +3,7 @@ en
 conf t 
 hostname SW1
 ip domain-name wnszki.hu
+ip ssh version 2
 crypto key generate rsa 
 1024
 
