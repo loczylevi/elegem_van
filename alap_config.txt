@@ -8,7 +8,7 @@ crypto key generate rsa
 1024
 
 ip ssh version 2
-useraname 1234 password 1234
+username 1234 password 1234
 enable password 1234
 service password-encryption
 line console 0
