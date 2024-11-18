@@ -3,7 +3,7 @@ en
 conf t 
 hostname SW1
 ip domain-name wnszki.hu
-crpyto key generate rsa
+crypto key generate rsa 
 1024
 useraname 1234 password 1234
 enable password 1234
