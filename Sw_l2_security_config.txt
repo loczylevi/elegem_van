@@ -1,0 +1,77 @@
+
+
+# a nem használt protok lekapcsolása
+
+S1(config)# interface range fa0/8 - 24
+S1(config-if-range)# shutdown
+
+#Portbiztonság engedélyezése
+
+S1(config)# interface f0/1
+S1(config-if)# switchport port-security
+Command rejected: FastEthernet0/1 is a dynamic port.
+S1(config-if)# switchport mode access
+S1(config-if)# switchport port-security
+S1(config-if)# end
+S1#
+
+
+# CHECK COMMAND
+
+ show port-security interface 
+ 
+ #A portbiztonság engedélyezése után más specifikációk is konfigurálhatók
+ 
+ switchport port-security ?
+ 
+ #A porton engedélyezett MAC-címek maximális számának beállításához használjuk a következő parancsot:
+ 
+ Switch(config-if)# switchport port-security maximum value 
+ Switch(config-if)# switchport port-security maximum 1
+ 
+ #A rendszergazda manuálisan konfigurál egy biztonságos MAC-címet a porthoz a következő paranccsal:
+ 
+ Switch(config-if)# switchport port-security mac-address mac-address
+ 
+ 
+  
+ #Dynamically Learned – Sticky
+
+#A rendszergazda a következő paranccsal engedélyezheti, hogy a switch dinamikusan megtanulja a MAC-#címet, és hozzáadja azt az aktív konfigurációhoz:
+
+Switch(config-if)# switchport port-security mac-address sticky 
+  
+
+show port-security interface
+
+show port-security address
+
+
+#A lejárati idő használatával anélkül távolíthatjuk el a MAC-címeket, hogy manuálisan kellene törölnünk azokat. A lejárati idők megnövelhetők annak érdekében, hogy a korábbi biztonságos MAC-címek megmaradjanak, még akkor is, ha új MAC-címeket adunk hozzá. A statikusan konfigurált biztonságos címek elévülése portonként engedélyezhető vagy letiltható.
+
+  Switch(config-if)# switchport port-security aging {  static | time time |     type   {absolute | inactivity}
+  
+ S1(config)# interface fa0/1
+S1(config-if)# switchport port-security aging time 10
+S1(config-if)# switchport port-security aging type inactivity
+
+
+  
+ #11.1.6 Porbiztonság megsértési módok
+ 
+ #Ha a porthoz csatlakozó eszköz MAC-címe nincs benne a biztonságos címek listájában, akkor portbiztonság sértés következik be. Alapértelmezés szerint a port "error-disabled" (hiba miatt letiltott) állapotba kerül.
+
+#A portbiztonság megsértési módjának beállításához használjuk a következő parancsot:
+
+ Switch(config-if)# switchport port-security violation {  protect | restrict |  shutdown}
+  
+ show port-security
+  
+ show run interface fa0/1
+ show port-security address
+ 
+  
+ 
+ 
+ 
+ 
