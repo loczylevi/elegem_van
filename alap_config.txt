@@ -5,6 +5,7 @@ hostname SW1
 ip domain-name wnszki.hu
 crypto key generate rsa 
 1024
+
 useraname 1234 password 1234
 enable password 1234
 service password-encryption
@@ -19,9 +20,14 @@ login local
 exit
 banner motd #Ez az SW1-es Switch#
 
-
 ip ftp username 1234
 ip ftp password 1234
+
+end
+copy running-config startup-config 
+copy run ftp
+
+
 
 interface vlan1
 
@@ -30,8 +36,9 @@ no shut
 ip default-gateway 192.168.0.1
 
 end
-copy run start
+copy running-config startup-config 
 copy run ftp
+
 # copy run ftp utan ip cimet kell megadni
 write 
 do write
