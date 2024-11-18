@@ -18,7 +18,7 @@ transport input ssh
 login local
 exit
 banner motd #Ez az SW1-es Switch#
-banner login #Ez az SW1-es Switch, kod szukseges!#
+
 
 ip ftp username 1234
 ip ftp password 1234
