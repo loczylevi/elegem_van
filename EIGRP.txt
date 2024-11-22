@@ -1,0 +1,28 @@
+R1(config)#router eigrp ?
+  <1-65535>  Autonomous system number
+R1(config)#router eigrp 100
+R1(config-router)#?
+  auto-summary       Enable automatic network number summarization
+  distance           Define an administrative distance
+  eigrp              EIGRP specific commands
+  exit               Exit from routing protocol configuration mode
+  metric             Modify IGRP routing metrics and parameters
+  neighbor           Specify a neighbor router
+  network            Enable routing on an IP network
+  no                 Negate a command or set its defaults
+  passive-interface  Suppress routing updates on an interface
+  redistribute       Redistribute information from another routing protocol
+  variance           Control load balancing variance
+R1(config-router)#net
+R1(config-router)#network 192.168.100.0 ?
+  A.B.C.D  EIGRP wild card bits
+  <cr>
+R1(config-router)#network 192.168.100.0 
+R1(config-router)#no network 192.168.100.0 
+R1(config-router)#network 192.168.100.0
+R1(config-router)#network 192.168.3.1 0.0.0.3
+R1(config-router)#no network 192.168.3.1 0.0.0.3
+R1(config-router)#no network 192.168.3.0 0.0.0.3
+R1(config-router)#network 192.168.3.0 0.0.0.3
+R1(config-router)#network 192.168.3.20 0.0.0.3
+R1(config-router)#
